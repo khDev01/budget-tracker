@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 body {
-  /* background-color:#777; */
+  background-color: #f8f8ff;
+  background-color: darkslategray;
 }
 
 input::-webkit-outer-spin-button,
@@ -68,7 +69,7 @@ input[type="number"] {
 
 .button {
   background-color: #04aa6d;
-  border: ;
+  border: none;
   border-radius: 100px;
   color: white;
   padding: 10px 25px;
