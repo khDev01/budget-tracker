@@ -21,6 +21,10 @@ input[type="number"] {
   /* justify-content: space-between; */
 }
 
+.myinput {
+  width: 50%;
+}
+
 .card {
   padding: 8px;
   background-color: #04aa6d;
