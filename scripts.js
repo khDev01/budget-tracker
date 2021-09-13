@@ -215,15 +215,14 @@ function calculate() {
   low = parseFloat(document.getElementById("lowerNumber").value)
   high = parseFloat(document.getElementById("higherNumber").value)
   multiplier = parseFloat(document.getElementById("multiplier").value)
-  // lower = low * 0.0016
-  // higher = high * 0.0026
+  lower = low * 0.0016
+  higher = high * 0.0016
 
-  // lower = lower + low
-  // higher = high - higher
+  lower = lower + low
+  higher = high - higher
 
   // console.log(low)
-  // console.log(lower)
-  // console.log(higher)
+
   calculation = high - high * 0.0026 - (low * 0.0016 + low)
   // difference = higher - lower
   // console.log(typeof calculation)
@@ -231,6 +230,30 @@ function calculate() {
   document.getElementById("calcResult").innerHTML = calculation
   document.getElementById("roundedDownCalc").innerHTML =
     Math.floor(calculation * 100) / 100
+  document.getElementById("lowValue").innerHTML = lower
+  document.getElementById("highValue").innerHTML = higher
+
+  // document.getElementById("diffcalc").innerHTML = difference
+}
+
+function calculatePax() {
+  low = parseFloat(document.getElementById("lowerNumberPax").value)
+  high = parseFloat(document.getElementById("higherNumberPax").value)
+  multiplier = parseFloat(document.getElementById("multiplierPax").value)
+  calculation = high - low
+  lower = low * multiplier
+  higher = high - multiplier
+  fee = multiplier * 0.005
+  fee = fee + multiplier
+  // console.log(typeof calculation)
+  calculation = calculation * multiplier
+  feeMultiplier = calculation * fee
+  document.getElementById("resultPax").innerHTML =
+    Math.floor(feeMultiplier * 100) / 100
+  document.getElementById("roundedDownPax").innerHTML =
+    Math.floor(calculation * 100) / 100
+  document.getElementById("feePax").innerHTML = fee
+
   // document.getElementById("diffcalc").innerHTML = difference
 }
 
