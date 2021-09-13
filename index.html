@@ -6,74 +6,78 @@
   <title>Budget App</title>
   <link rel="stylesheet"
   href="./style.css" />
+  <script
+  src="jquery-3.6.0.min.js"></script>
 </head>
 
-<body>
-  <button
-  onclick="deleteLocalStorage()">Delee</button>
+<body class="">
+
+  <button onclick="deleteLocalStorage()"
+  class="">Delete
+    data
+  </button>
+
   <h2 style="text-align: center">
-    Responsive Budget App</h2>
-  <section class="wrapper">
-    <div class="card">
+    Budget App
+  </h2>
+  <section class="">
+    <div class="" m=1>
+
       <h3>Budget</h3>
-      <input type="number"
-      class="budget-amount">
+      <input
+      oninput="this.value=this.value.slice(0,this.maxLength)"
+      type="number" maxlength="4"
+      class="budget-amount"
+      placeholder="0"
+      id="budget-amount" />
+      <button
+      onclick="saveBudget()">Save</button>
     </div>
-    <!-- <div class="card"></div> -->
-    <div class="card">
-      <h3>expenses</h3>
+    <div class="">
+      <h3>Balance</h3>
+      <h3 id="totalBalance"></h3>
+      <h3>Budget left</h3>
+      <h3 id="budgetLeft"></h3>
     </div>
   </section>
 
-  <table id="productTable"
-  class="table table-bordered table-condensed table-striped">
+  <form class="myForm"
+  onsubmit="addToLocalStorage();showData(); formClear(); return false">
+    <input type="button" value="Expense"
+    id="incomeExpense"
+    class="btn-flat teal"
+    onclick="toggleIncomeExpense()">
+
+    <input type="number" name=""
+    step="any" id="price" />
+
+    <input type="submit"
+    id="updateButton" class=""
+    value="Add">
+    </input>
+
+  </form>
+
+  <table id="productTable" class="">
     <thead>
       <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Amount</th>
-        <th>Date</th>
+        <!-- <th>Type</th> -->
+        <!-- <th style="width: 50%;">Name
+        </th> -->
+        <!-- <th>Price</th> -->
+        <th style="width: 25%;"
+        class="centered">Amount
+        </th>
+        <th style="width: 25%;">Date
+        </th>
       </tr>
     </thead>
+    <tbody id="tableBody"></tbody>
   </table>
-  <form onsubmit="addToLocalStorage()">
 
-
-    <input type="button" value="Income"
-    id="incomeExpense"
-    onclick="toggleIncomeExpense()">
-    <label for="type">Type</label>
-    <select id="type" name="type">
-      <option value="store">Shop
-      </option>
-      <option value="fruit/veg">Fruit
-      </option>
-      <option value="electric">electric
-      </option>
-      <option value="mega">Mega</option>
-      <option value="bill">Bill</option>
-    </select>
-    <!-- <input type="number" id="type" /> -->
-    <input type="text" id="productname"
-    autofocus />
-    <input type="number" step="10"
-    name="" id="price" />
-    <input type="text" name=""
-    id="quantity" />
-    <input type="datetime" name=""
-    id="introdate" disabled />
-    <input type="submit"
-    id="updateButton"
-    class="btn btn-primary">
-    Add
-    </input>
-  </form>
   <div id="result"></div>
   <script src="scripts.js"></script>
-  <script>
 
-  </script>
 </body>
 
 </html>
