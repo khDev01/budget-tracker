@@ -2,177 +2,38 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <style>
-    @font-face {
-      font-family: 'Material Icons';
-      font-style: normal;
-      font-weight: 400;
-      src: url(material.woff2) format('woff2');
-    }
-
-    .material-icons {
-      font-family: 'Material Icons';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: normal;
-      text-transform: none;
-      display: inline-block;
-      white-space: nowrap;
-      word-wrap: normal;
-      direction: ltr;
-
-    }
-  </style>
-  <link rel="stylesheet"
-  href="./materialize.min.css">
   <meta charset="utf-8" />
   <title>Budget App</title>
-  <!-- <link rel="stylesheet"
-  href="./style.css" /> -->
+  <link rel="stylesheet"
+  href="./style.css" />
   <script
   src="jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="blue-grey darken-2 ">
-  <form class="myForm"
-  onsubmit="calculate(); return false;">
-    <div class=" row">
+<body class="">
 
-      <div class="input-field col ">
-        <input type="number" value=""
-        step="any" id="multiplier" />
-      </div>
-
-      <div class="input-field col ">
-        <input type="number" value=""
-        step="any" id="lowerNumber" />
-      </div>
-
-      <div class="input-field col ">
-        <input type="number" value=""
-        step="any" id="higherNumber" />
-      </div>
-      <input type="submit"
-      id="updateButton"
-      class="btn-flat teal input-field col"
-      value="Calculate">
-      </input>
-    </div>
-
-  </form>
-  <!-- <h1 id="diffcalc"></h1> -->
-  <h2 id="roundedDownCalc"></h2>
-  <span id="calcResult">result</span>
-  <span id="lowValue">low</span>
-  <span id="highValue">high</span>
-  <br>
-  <form class="myForm"
-  onsubmit="calculatePax(); return false;">
-    <div class=" row">
-
-      <div class="input-field col ">
-        <input type="number"
-        value="0.05" step="any"
-        id="multiplierPax" />
-      </div>
-
-      <div class="input-field col ">
-        <input type="number"
-        value="2250" step="any"
-        id="lowerNumberPax" />
-      </div>
-
-      <div class="input-field col ">
-        <input type="number"
-        value="2600" step="any"
-        id="higherNumberPax" />
-      </div>
-      <input type="submit"
-      id="updateButtonPax"
-      class="btn-flat teal input-field col"
-      value="CalculatePax">
-      </input>
-    </div>
-    <p id="feePax">fee</p>
-    <p id="resultPax"></p>
-    <p id="roundedDownPax"></p>
-
-  </form>
-
-  <!-- <div
-  style="position: relative; height: 70px;">
-    <div
-    class="fixed-action-btn click-to-toggle direction-top direction-left active"
-    style="position: absolute; right: 24px;">
-      <a
-      class="btn-floating btn-large red">
-        <i
-        class="material-icons">menu</i>
-      </a>
-      <ul>
-        <li>
-          <a
-          class="btn-floating red tooltipped"
-          data-position="bottom"
-          data-tooltip="Delete Data"
-          onclick="deleteLocalStorage()"
-          style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
-            <i
-            class="material-icons">delete</i>
-          </a>
-        </li>
-        <li>
-          <a
-          class="btn-floating green disabled"
-          style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
-            <i
-            class="material-icons">publish</i>
-          </a>
-        </li>
-        <li>
-          <a
-          class="btn-floating blue disabled"
-          style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
-            <i
-            class="material-icons">download</i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div> -->
   <button onclick="deleteLocalStorage()"
-  class="waves-effect waves-light btn">Delete
-    data <i
-    class="material-icons send">add</i>
+  class="">Delete
+    data
   </button>
 
-  <!-- <h2 style="text-align: center">
+  <h2 style="text-align: center">
     Budget App
-  </h2> -->
-  <section class="row container ">
-    <div
-    class="teal card z-depth-4 col s12 m4 "
-    m=1>
+  </h2>
+  <section class="">
+    <div class="" m=1>
 
       <h3>Budget</h3>
-      <!-- <input type="number"
-      class="budget-amount" value="10"
-      id="budget-amount"> -->
       <input
       oninput="this.value=this.value.slice(0,this.maxLength)"
       type="number" maxlength="4"
       class="budget-amount"
       placeholder="0"
       id="budget-amount" />
-      <!-- <i class="material-icons ">account_balance_wallet</i> -->
       <button
       onclick="saveBudget()">Save</button>
     </div>
-    <!-- <div class="card"></div> -->
-    <div
-    class="teal z-depth-4 col s12 m4 center right">
+    <div class="">
       <h3>Balance</h3>
       <h3 id="totalBalance"></h3>
       <h3>Budget left</h3>
@@ -182,58 +43,27 @@
 
   <form class="myForm"
   onsubmit="addToLocalStorage();showData(); formClear(); return false">
+    <input type="button" value="Expense"
+    id="incomeExpense"
+    class="btn-flat teal"
+    onclick="toggleIncomeExpense()">
 
-    <!-- <label for="type">Type</label> -->
-    <!-- <input type="number" id="type" /> -->
-    <div class=" row">
-      <div class="input-field col ">
-        <input type="button"
-        value="Food" id="type"
-        class="btn-flat teal"
-        onclick="toggleType()">
-      </div>
-      <!-- food bill travel other -->
+    <input type="number" name=""
+    step="any" id="price" />
 
-
-      <div class="input-field col s5">
-        <input type="text"
-        placeholder="Bread"
-        id="productname" autofocus
-        class="autocomplete" />
-      </div>
-
-      <div class="input-field col s3">
-        <input type="number" name=""
-        step="any" id="price" />
-      </div>
-
-
-      <div class="input-field col ">
-        <input type="button"
-        value="Expense"
-        id="incomeExpense"
-        class="btn-flat teal"
-        onclick="toggleIncomeExpense()">
-      </div>
-
-      <input type="submit"
-      id="updateButton"
-      class="btn-flat teal input-field col"
-      value="Add">
-      </input>
-    </div>
-
-
+    <input type="submit"
+    id="updateButton" class=""
+    value="Add">
+    </input>
 
   </form>
 
-  <table id="productTable"
-  class="centered flow-text center-align container">
+  <table id="productTable" class="">
     <thead>
       <tr>
         <!-- <th>Type</th> -->
-        <th style="width: 50%;">Name
-        </th>
+        <!-- <th style="width: 50%;">Name
+        </th> -->
         <!-- <th>Price</th> -->
         <th style="width: 25%;"
         class="centered">Amount
@@ -242,130 +72,11 @@
         </th>
       </tr>
     </thead>
-    <tbody id="tableBody">
-
-    </tbody>
-  </table>
-
-
-  <form class="myForm"
-  onsubmit="addToLocalStorageCrypt(); showDataCrypto();return false">
-
-    <div class="row">
-
-      <div class="input-field col s2 ">
-        <select id="crypto"
-        name="crypto">
-          <option value="BTC">BTC
-          </option>
-          <option value="ETH">ETH
-          </option>
-        </select>
-      </div>
-
-      <div class="input-field col ">
-        <input type="button" value="Buy"
-        id="buySell"
-        class="btn-flat teal"
-        onclick="toggleBuySell()">
-      </div>
-
-
-      <div class="col ">
-        <!-- <input type="crypto"
-        list="crypto" />
-        <datalist id="crypto">
-          <option>BTC</option>
-          <option>ETH</option>
-        </datalist> -->
-
-      </div>
-
-      <div class="input-field col s3">
-        <input type="number" name=""
-        id="amount" />
-      </div>
-
-      <div class="input-field col s3">
-        <input type="number" name=""
-        id="priceCrypto" />
-      </div>
-
-      <!-- FOR EXPANDED V
-        <div class="input-field col s3">
-        <input type="number" name=""
-        id="fee" />
-      </div> -->
-
-
-
-      <input type="submit"
-      id="updateButton"
-      class="btn-flat teal input-field col"
-      value="Add">
-      </input>
-    </div>
-  </form>
-
-
-  <table id="cryptTable"
-  class="centered flow-text center-align container">
-    <thead>
-      <tr>
-        <!-- <th>Type</th> -->
-        <th>Type </th>
-        <th>Type 2</th>
-        <th class="centered">Amount
-        </th>
-        <th>Price</th>
-        <th> Date </th>
-      </tr>
-    </thead>
-    <tbody id="cryptTableBody">
-
-    </tbody>
+    <tbody id="tableBody"></tbody>
   </table>
 
   <div id="result"></div>
-  <script type="text/javascript"
-  src="materialize.min.js"></script>
   <script src="scripts.js"></script>
-  <script>
-    // document.addEventListener('DOMContentLoaded', function () {
-    //   var elems = document.querySelectorAll('.fixed-action-btn');
-    //   var instances = M.FloatingActionButton.init(elems, {
-    //     // direction: 'left',
-    //     hoverEnabled: true
-    //   });
-    // });
-    // document.addEventListener('DOMContentLoaded', function () {
-    //   var elems = document.querySelectorAll('.tooltipped');
-    //   var instances = M.Tooltip.init(elems, {
-    //     hoverEnabled: true
-    //   })
-    // });
-
-    // document.addEventListener('DOMContentLoaded', function () {
-    //   var elems = document.querySelectorAll('.autocomplete');
-
-    //   var instances = M.Autocomplete.init(elems, {
-    //     data: {
-    //       "Apple": null,
-    //       "Microsoft": null,
-    //       "Google": 'https://placehold.it/250x250'
-    //     },
-    //   })
-    // });
-
-    $(document).ready(function () {
-      $('select').formSelect();
-    });
-  </script>
-
-
-
-
-
 
 </body>
 
