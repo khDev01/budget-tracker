@@ -6,7 +6,7 @@
 
 // // Show localstorage values in console |
 for (var i = 0; i < localStorage.length; i++) {
-  console.log(localStorage.getItem(localStorage.key(i)))
+  // console.log(localStorage.getItem(localStorage.key(i)))
 }
 var currentDate = new Date()
 var dd = String(currentDate.getDate()).padStart(2, "0")
@@ -24,13 +24,65 @@ function toggleIncomeExpense() {
 }
 
 function toggleType() {
-  const target = document.getElementById("type")
-  target.value = target.value == "Food" ? " Bill" : "Food"
+  const target = $("#type")
+  switch (target.val()) {
+    case "Food":
+      target.val("Bill")
+      break
+    case "Bill":
+      target.val("Milk")
+      break
+    case "Milk":
+      target.val("Food")
+      break
+    default:
+      target.val("Food")
+  }
 }
 
 function toggleBuySell() {
   const target = document.getElementById("buySell")
   target.value = target.value == "Buy" ? " Sell" : "Buy"
+}
+
+function toggleLowMult() {
+  const target = $("#lowerNumberMultiplier")
+  switch (target.val()) {
+    case "0.0016":
+      target.val("0.0026")
+      break
+    case "0.0026":
+      target.val("0.005")
+      break
+    case "0.005":
+      target.val("0")
+      break
+    case "0":
+      target.val("0.0016")
+      break
+    default:
+      target.val("0.0026")
+  }
+}
+
+function toggleHighMult() {
+  const target = $("#higherNumberMultiplier")
+  switch (target.val()) {
+    case "0.0016":
+      target.val("0.0026")
+      break
+    case "0.0026":
+      target.val("0.005")
+      break
+    case "0.005":
+      target.val("0")
+      break
+    case "0":
+      target.val("0.0016")
+      break
+    default:
+      target.val("0.0026")
+  }
 }
 
 var arr = new Array()
@@ -215,15 +267,10 @@ function calculate() {
   low = parseFloat(document.getElementById("lowerNumber").value)
   high = parseFloat(document.getElementById("higherNumber").value)
   multiplier = parseFloat(document.getElementById("multiplier").value)
-  lower = low * 0.0016
-  higher = high * 0.0016
+  lower = parseFloat(document.getElementById("lowerNumberMultiplier").value)
+  higher = parseFloat(document.getElementById("higherNumberMultiplier").value)
+  calculation = high - high * higher - (low * lower + low)
 
-  lower = lower + low
-  higher = high - higher
-
-  // console.log(low)
-
-  calculation = high - high * 0.0026 - (low * 0.0016 + low)
   // difference = higher - lower
   // console.log(typeof calculation)
   calculation = calculation * multiplier
@@ -232,27 +279,6 @@ function calculate() {
     Math.floor(calculation * 100) / 100
   document.getElementById("lowValue").innerHTML = lower
   document.getElementById("highValue").innerHTML = higher
-
-  // document.getElementById("diffcalc").innerHTML = difference
-}
-
-function calculatePax() {
-  low = parseFloat(document.getElementById("lowerNumberPax").value)
-  high = parseFloat(document.getElementById("higherNumberPax").value)
-  multiplier = parseFloat(document.getElementById("multiplierPax").value)
-  calculation = high - low
-  lower = low * multiplier
-  higher = high - multiplier
-  fee = multiplier * 0.005
-  fee = fee + multiplier
-  // console.log(typeof calculation)
-  calculation = calculation * multiplier
-  feeMultiplier = calculation * fee
-  document.getElementById("resultPax").innerHTML =
-    Math.floor(feeMultiplier * 100) / 100
-  document.getElementById("roundedDownPax").innerHTML =
-    Math.floor(calculation * 100) / 100
-  document.getElementById("feePax").innerHTML = fee
 
   // document.getElementById("diffcalc").innerHTML = difference
 }
