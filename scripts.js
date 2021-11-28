@@ -55,6 +55,9 @@ function toggleLowMult() {
       target.val("0.005")
       break
     case "0.005":
+      target.val("0.00019")
+      break
+    case "0.00019":
       target.val("0")
       break
     case "0":
@@ -75,6 +78,9 @@ function toggleHighMult() {
       target.val("0.005")
       break
     case "0.005":
+      target.val("0.00019")
+      break
+    case "0.00019":
       target.val("0")
       break
     case "0":
@@ -269,16 +275,19 @@ function calculate() {
   multiplier = parseFloat(document.getElementById("multiplier").value)
   lower = parseFloat(document.getElementById("lowerNumberMultiplier").value)
   higher = parseFloat(document.getElementById("higherNumberMultiplier").value)
-  calculation = high - high * higher - (low * lower + low)
-
-  // difference = higher - lower
-  // console.log(typeof calculation)
-  calculation = calculation * multiplier
-  document.getElementById("calcResult").innerHTML = calculation
+  // difference = multiplier * (high - high * higher - (low * lower + low))
+  lowerCalc = multiplier * (low * lower + low)
+  higherCalc = multiplier * (high - high * higher)
+  difference = higherCalc - lowerCalc
+  // document.getElementById("calcResult").innerHTML = difference
   document.getElementById("roundedDownCalc").innerHTML =
-    Math.floor(calculation * 100) / 100
-  document.getElementById("lowValue").innerHTML = lower
-  document.getElementById("highValue").innerHTML = higher
+    Math.floor(difference * 1000) / 1000
+  document.getElementById("lowValue").innerHTML =
+    Math.floor(lowerCalc * 100000) / 100000
+  document.getElementById("highValue").innerHTML =
+    Math.floor(higherCalc * 100000) / 100000
+  document.getElementById("percentageChange").innerHTML =
+    ((difference / lowerCalc) * 100).toFixed(5) + "%"
 
   // document.getElementById("diffcalc").innerHTML = difference
 }

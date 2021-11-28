@@ -28,6 +28,7 @@
   <link rel="stylesheet"
   href="./materialize.min.css">
   <meta charset="utf-8" />
+  <link rel="icon" href="./favicon.png">
   <title>Budget App</title>
   <!-- <link rel="stylesheet"
   href="./style.css" /> -->
@@ -41,46 +42,60 @@
     <div class=" row">
 
       <div class="input-field col ">
-        <input type="number" value="1"
-        step="any" id="multiplier" />
+        <input type="number"
+        onkeyup="calculate()"
+        value="0.001" step="any"
+        id="multiplier"
+        class="white-text" />
       </div>
 
       <div class="input-field col ">
-        <input type="number" value="10"
-        step="any" id="lowerNumber" />
+        <input type="number"
+        onkeyup="calculate()"
+        value="35000" step="any"
+        id="lowerNumber"
+        class=" orange-text" />
       </div>
 
       <div class="input-field col ">
-        <input type="number" value="100"
-        step="any" id="higherNumber" />
+        <input type="number"
+        onkeyup="calculate()"
+        value="40000" step="any"
+        id="higherNumber"
+        class="lime-text" />
       </div>
       <div class="input-field col ">
         <input type="button"
         value="0.0016"
         id="lowerNumberMultiplier"
-        class="btn-flat teal"
-        onclick="toggleLowMult()">
+        class="btn-flat teal orange-text"
+        onclick="toggleLowMult(); calculate()">
       </div>
       <div class="input-field col ">
         <input type="button"
         value="0.0016"
         id="higherNumberMultiplier"
-        class="btn-flat teal"
-        onclick="toggleHighMult()">
+        class="btn-flat teal lime-text"
+        onclick="toggleHighMult(); calculate()">
       </div>
-      <input type="submit"
+      <!-- <input type="submit"
       id="updateButton"
       class="btn-flat teal input-field col"
       value="Calculate">
-      </input>
+      </input> -->
     </div>
-
   </form>
-  <!-- <h1 id="diffcalc"></h1> -->
-  <h2 id="roundedDownCalc"></h2>
-  <span id="calcResult">result</span>
-  <span id="lowValue">low</span>
-  <span id="highValue">high</span>
+  <span id="roundedDownCalc"
+  style="font-size: xx-large; font-weight: bold;">rounded
+    diff
+  </span>
+  <!-- <span id="calcResult">result</span> -->
+  <span id="lowValue"
+  class="orange-text">low</span>
+  <span id="highValue"
+  class=" lime-text">high</span>
+  <span id="percentageChange"
+  class=" blue-text">%</span>
 
   <!-- <div
   style="position: relative; height: 70px;">
@@ -123,8 +138,9 @@
       </ul>
     </div>
   </div> -->
+  <br>
   <button onclick="deleteLocalStorage()"
-  class="waves-effect waves-light btn">Delete
+  class="waves-effect waves-light btn red-text">Delete
     data <i
     class="material-icons send">add</i>
   </button>
