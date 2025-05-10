@@ -48,6 +48,8 @@ function toggleBuySell() {
 function toggleLowMult() {
   const target = $("#lowerNumberMultiplier")
   switch (target.val()) {
+    case "0.001":
+      target.val("0.00019")
     case "0.0016":
       target.val("0.0026")
       break
@@ -71,6 +73,8 @@ function toggleLowMult() {
 function toggleHighMult() {
   const target = $("#higherNumberMultiplier")
   switch (target.val()) {
+    case "0.001":
+      target.val("0.00019")
     case "0.0016":
       target.val("0.0026")
       break
@@ -172,15 +176,12 @@ function formClear() {
 function addToLocalStorage() {
   getData()
   if (document.getElementById("incomeExpense").value == "Expense") {
-    document.getElementById("price").value = -Math.abs(
-      document.getElementById("price").value
-    )
+    document.getElementById("price").value = -Math.abs(document.getElementById("price").value)
   }
   // type: document.getElementById("type").value,
   // quantity: document.getElementById("quantity").value,
   // type:$("#type").value
-  incomeValue =
-    document.getElementById("incomeExpense").value == "Income" ? "in" : "out"
+  incomeValue = document.getElementById("incomeExpense").value == "Income" ? "in" : "out"
   type = document.getElementById("type").value == "Food" ? "food" : "bill"
   arr.push({
     type: type,
@@ -280,14 +281,13 @@ function calculate() {
   higherCalc = multiplier * (high - high * higher)
   difference = higherCalc - lowerCalc
   // document.getElementById("calcResult").innerHTML = difference
-  document.getElementById("roundedDownCalc").innerHTML =
-    Math.floor(difference * 1000) / 1000
-  document.getElementById("lowValue").innerHTML =
-    Math.floor(lowerCalc * 100000) / 100000
-  document.getElementById("highValue").innerHTML =
-    Math.floor(higherCalc * 100000) / 100000
+  document.getElementById("roundedDownCalc").innerHTML = Math.floor(difference * 1000) / 1000
+  document.getElementById("lowValue").innerHTML = Math.floor(lowerCalc * 100000) / 100000
+  document.getElementById("highValue").innerHTML = Math.floor(higherCalc * 100000) / 100000
   document.getElementById("percentageChange").innerHTML =
     ((difference / lowerCalc) * 100).toFixed(5) + "%"
+
+  document.getElementById("gb").innerHTML = (Math.floor(higherCalc * 100000) / 100000) * 0.8
 
   // document.getElementById("diffcalc").innerHTML = difference
 }
